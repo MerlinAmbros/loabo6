@@ -7,7 +7,7 @@
 
 #include "vector"
 
-enum Surface {L, X, H};
+enum Surface {L, X, H, h};
 
 using Data = Surface;
 using Ligne = std::vector<Data>;
@@ -15,6 +15,6 @@ using Terrain = std::vector<Ligne>;
 
 using Tondeuse = std::vector<int>;
 
-void tondre(Terrain terrain, Tondeuse tondeuse, unsigned int nombredeplacement, bool afficher);
+void tondre(Terrain terrain, Tondeuse &tondeuse, unsigned int nombreDeplacement, bool afficher);
 
 #endif //UNTITLED5_TONDEUSE_H

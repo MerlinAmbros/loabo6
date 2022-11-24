@@ -17,47 +17,56 @@ bool deplacementPossible(const Terrain &terrain, const Tondeuse &tondeuse){
     return true;
 }
 
-void affichage(Terrain terrain){
-  for (vector<int>::iterator i = terrain[i][0]; i != v.end(); ++i){
-        for(vector<int>::iterator i = v.begin(); i != v.end(); ++i)
-    }
+//void affichage(Terrain terrain){
+//  for (vector<int>::iterator i = terrain[i][0]; i != v.end(); ++i){
+ //       for(vector<int>::iterator i = v.begin(); i != v.end(); ++i)
+  //  }
 
-}
+//}
 
-void deplacement(int &cordX, int &cordY){
-    unsigned int random = rand() % 4 + 1;
+void deplacement(int &cordX, int &cordY, const Terrain &terrain){
+    int  tempCordX = cordX,
+         tempCordY = cordY;
+
+    unsigned int random = 1 + (rand() % 4);
     switch (random) {
         case 1:
-            cordX + 1;
+            tempCordX += 1;
             break;
         case 2:
-            cordY + 1;
+            tempCordY += 1;
             break;
         case 3:
-            cordX - 1;
+            tempCordX -= 1;
             break;
         case 4:
-            cordY - 1;
+            tempCordY -= 1;
+            break;
         default :
             std::cout << "error";
     }
+
+    //if(deplacementPossible(terrain)){
+    //   cordX = tempCordX;
+    //   cordY = tempCordY;
+    //}
 }
 
-void  tondre(Terrain terrain, Tondeuse tondeuse, unsigned int nombredeplacement, bool afficher){
+void tondre(Terrain terrain, Tondeuse &tondeuse, unsigned int nombreDeplacement, bool afficher){
+    int  cordX = tondeuse.front(),
+         cordY = tondeuse.back(),
+         ancienneCordX,
+         ancienneCordY;
 
+    for(int i = 0; i < nombreDeplacement; ++i) {
+       //deplacement(cordX, cordY);
+       if(deplacementPossible(terrain, tondeuse)){
+          terrain[cordX][cordY] = Surface::h;
+       }
 
-    int cordX = tondeuse.front();
-    int cordY = tondeuse.back();
-
-    for(int i = 0; i<nombredeplacement; ++i) {
-            do {
-                //couper l'herbe manque
-                deplacement(cordX, cordY);
-
-                afficher(terrain);
-
-            } while (deplacementPossible(terrain, tondeuse));
-        }
+       ancienneCordX = cordX;
+       ancienneCordY = cordY;
+    }
 }
 
 
