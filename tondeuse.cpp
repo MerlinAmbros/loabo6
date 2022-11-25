@@ -3,8 +3,6 @@
 //
 
 #include "tondeuse.h"
-#include  <cstdlib>
-#include <iostream>
 
 bool deplacementPossible(const Terrain &terrain, const int cordX, const int cordY){
     if(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L){
@@ -16,7 +14,7 @@ bool deplacementPossible(const Terrain &terrain, const int cordX, const int cord
 
 void affichage(Terrain terrain){
    for(size_t i = 0; i < terrain.size(); ++i){
-      for(size_t j = 0; j < terrain.size(); ++j){
+      for(size_t j = 0; j < terrain[i].size(); ++j){
          switch(terrain[i][j]){
             case Surface::L:
                std::cout << " " << "L";
@@ -69,16 +67,14 @@ bool deplacement(const Terrain &terrain, int &cordX, int &cordY){
 
 void tondre(Terrain terrain, Tondeuse &tondeuse, unsigned int nombreDeplacement, bool afficher){
     int  cordX = tondeuse.front(),
-         cordY = tondeuse.back(),
-         ancienneCordX,
-         ancienneCordY;
+         cordY = tondeuse.back();
 
     for(int i = 0; i < nombreDeplacement; ++i) {
+       system("clear");
        affichage(terrain);
        if(deplacement(terrain, cordX, cordY)){
           terrain[cordX][cordY] = Surface::h;
        }
-       system("clear");
     }
 }
 

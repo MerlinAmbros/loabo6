@@ -79,7 +79,7 @@ int main(){
    Tondeuse tondeuse = {1, 3};
 
    // tondre => n déplacements aléatoires
-   tondre(terrain, tondeuse, 10'000, true);
+   tondre(terrain, tondeuse, 10000, true);
 
    return EXIT_SUCCESS;
 }

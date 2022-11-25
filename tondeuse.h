@@ -6,6 +6,8 @@
 #define UNTITLED5_TONDEUSE_H
 
 #include "vector"
+#include  <cstdlib>
+#include <iostream>
 
 enum Surface {L, X, H, h};
 
