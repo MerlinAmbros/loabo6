@@ -4,7 +4,7 @@
 
 #include "tondeuse.h"
 
-bool deplacementPossible(const Terrain &terrain, const int cordX, const int cordY){
+bool deplacementPossible(const Terrain &terrain, const size_t cordX, const size_t cordY){
     if(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L){
         return false;
     }
@@ -12,21 +12,21 @@ bool deplacementPossible(const Terrain &terrain, const int cordX, const int cord
     return true;
 }
 
-void affichage(Terrain terrain){
+void affichage(Terrain &terrain){
    for(size_t i = 0; i < terrain.size(); ++i){
       for(size_t j = 0; j < terrain[i].size(); ++j){
          switch(terrain[i][j]){
             case Surface::L:
-               std::cout << " " << "L";
+               std::cout << " " << SYMBOLE_LIMITE;
                break;
             case Surface::H:
-               std::cout << " " << "~";
+               std::cout << " " << SYMBOLE_HERBE_HAUTE;
                break;
             case Surface::X:
-               std::cout << " " << "X";
+               std::cout << " " << SYMBOLE_OBSTACLE;
                break;
             case Surface::h:
-               std::cout << " " << ".";
+               std::cout << " " << SYMBOLE_HERBE_COUPE;
                break;
          }
       }
@@ -34,11 +34,11 @@ void affichage(Terrain terrain){
    }
 }
 
-bool deplacement(const Terrain &terrain, int &cordX, int &cordY){
-    int  tempCordX = cordX,
-         tempCordY = cordY;
+bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY){
+    size_t  tempCordX = cordX,
+            tempCordY = cordY;
 
-    unsigned int random = 1 + (rand() % 4);
+    int random = 1 + (rand() % 4);
     switch (random) {
         case 1:
             tempCordX += 1;
@@ -65,9 +65,9 @@ bool deplacement(const Terrain &terrain, int &cordX, int &cordY){
    return false;
 }
 
-void tondre(Terrain terrain, Tondeuse &tondeuse, unsigned int nombreDeplacement, bool afficher){
-    int  cordX = tondeuse.front(),
-         cordY = tondeuse.back();
+void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool afficher){
+    size_t  cordX = (size_t)tondeuse.front(),
+            cordY = (size_t)tondeuse.back();
 
     for(int i = 0; i < nombreDeplacement; ++i) {
        system("clear");

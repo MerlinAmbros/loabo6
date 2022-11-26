@@ -17,6 +17,14 @@ using Terrain = std::vector<Ligne>;
 
 using Tondeuse = std::vector<int>;
 
-void tondre(Terrain terrain, Tondeuse &tondeuse, unsigned int nombreDeplacement, bool afficher);
+const char SYMBOLE_LIMITE        = 'L';
+const char SYMBOLE_OBSTACLE      = 'X';
+const char SYMBOLE_HERBE_HAUTE   = '~';
+const char SYMBOLE_HERBE_COUPE   = '.';
+
+void affichage(Terrain &terrain);
+bool deplacementPossible(const Terrain &terrain, size_t cordX, size_t cordY);
+bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY);
+void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool afficher);
 
 #endif //UNTITLED5_TONDEUSE_H
