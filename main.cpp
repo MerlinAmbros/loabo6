@@ -1,16 +1,16 @@
-//------------------------------------------------------------------------------
-// Fichier     main.h
-// Auteur      GM Breguet
-// Date        21.11.2022
-//
-// But         Tondeuse automatique
-//
-// Remarque
-//
-// Modifs      n/a
-//
-// Compilateur
-//------------------------------------------------------------------------------
+//---------------------------------------------------------
+// Fichier        : main.cpp
+// Auteur(s)      : Gerber Cedric Merlin & Vasques Dario
+// But            : Application permettant de déplacer une tondeuse
+//                  sur un terrain puis de tondre l'herbe haute de ce dernier
+//                  tout en vérifiant si elle peut se déplacer.
+// Modifications  :
+// Remarque(s)    : -
+// Compilation :
+//    - Version C++ : 20
+//    - Compilateur : Mingw-w64 g++ 12.2.0 (Cedric)
+//                    Apple clang version 14.0.0 (Dario)
+//---------------------------------------------------------
 
 #include <cstdlib>
 #include <iostream>
