@@ -17,9 +17,9 @@
 
 void affichage(const Terrain &terrain){
    // Boucle for pour itérer sur le terrain
-   for(size_t i = 0; i < terrain.size(); ++i){
+   for(Terrain::size_type i = 0; i < terrain.size(); ++i){
       // Boucle for pour itérer dans chaque ligne du terrain
-      for(size_t j = 0; j < terrain[i].size(); ++j){
+      for(Ligne::size_type j = 0; j < terrain[i].size(); ++j){
          switch(terrain[i][j]){
             case Surface::L:
                std::cout << ESPACE << SYMBOLE_LIMITE;

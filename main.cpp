@@ -13,9 +13,7 @@
 //---------------------------------------------------------
 
 #include <cstdlib>   //EXIT_SUCCESS
-#include <iostream>
 
-#include "annexe.h"
 #include "tondeuse.h"
 
 using namespace std;
