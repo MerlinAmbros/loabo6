@@ -16,10 +16,11 @@
 
 #include "vector"       //utilisation des vecteurs
 #include <iostream>     //cout
-#include "random"       //utilisation des fonctions pour générer un nombre random
+
 
 // Déclaration de l'enum contenant les éléments du terrain
 enum Surface {L, X, H, h};
+
 
 // Types de données
 using Data     = Surface;
@@ -27,6 +28,7 @@ using Ligne    = std::vector<Data>;
 using Terrain  = std::vector<Ligne>;
 
 using Tondeuse = std::vector<size_t>;
+
 
 // Déclaration et initialisation des variables qui seront affichées
 const char SYMBOLE_LIMITE        = 'L';
@@ -44,17 +46,6 @@ const char ESPACE                = ' ';
  */
 void affichage(const Terrain &terrain);
 
-/**
- * @brief   Fonction pour récupérer un nombre aléatoire entre un minimum et maximum
- *
- * @param   const int min
- *          valeur minimum
- *
- *          const int max
- *          valeur maximum
- * @return  retourne rien
- */
-int numAleatoire(int min, int max);
 
 /**
  * @brief   Fonction pour contrôler que le déplacement de la tondeuse soit possible
@@ -67,7 +58,7 @@ int numAleatoire(int min, int max);
  *
  *          const size_t cordY
  *          cordonnée du point en Y à contrôler
- * @return  retourne si l'opération est possible
+ * @return  retourne un bool de si l'opération est possible
  */
 bool deplacementPossible(const Terrain &terrain, size_t cordX, size_t cordY);
 
@@ -83,7 +74,7 @@ bool deplacementPossible(const Terrain &terrain, size_t cordX, size_t cordY);
  *
  *          size_t cordY
  *          cordonnée du point en Y
- * @return  retourne si le déplacement s'est correctement effectué
+ * @return  retourne un bool de si le déplacement s'est correctement effectué
  */
 bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY);
 
@@ -97,7 +88,7 @@ bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY);
  *          vector<int>&
  *          vecteur contenant les cordonnées de départ de la tondeuse
  *
- *          int nombreDeplacement
+ *          const int nombreDeplacement
  *          nombre de déplacement de la tondeuse
  *
  *          bool afficher

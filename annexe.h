@@ -13,4 +13,19 @@
 #ifndef LABO_06_K_ANNEXE_H
 #define LABO_06_K_ANNEXE_H
 
+#include "random"       //utilisation des fonctions pour générer un nombre random
+
+/**
+ * @brief   Fonction pour récupérer un nombre aléatoire entre un minimum et maximum
+ *
+ * @param   const int min
+ *          valeur minimum
+ *
+ *          const int max
+ *          valeur maximum
+ * @return  retourne le nombre aléatoire
+ */
+int numAleatoire(int min, int max);
+
+
 #endif //LABO_06_K_ANNEXE_H

@@ -12,13 +12,15 @@
 //---------------------------------------------------------
 
 #include "tondeuse.h"
+#include "annexe.h"     //génére un nombre aléatoire
+
 
 void affichage(const Terrain &terrain){
    // Boucle for pour itérer sur le terrain
-   for(auto & i : terrain){
-      //boucle for pour itérer dans chaque ligne du terrain
-      for(auto & j : i){
-         switch(j){
+   for(size_t i = 0; i < terrain.size(); ++i){
+      // Boucle for pour itérer dans chaque ligne du terrain
+      for(size_t j = 0; j < terrain[i].size(); ++j){
+         switch(terrain[i][j]){
             case Surface::L:
                std::cout << ESPACE << SYMBOLE_LIMITE;
                break;
@@ -38,37 +40,22 @@ void affichage(const Terrain &terrain){
 }
 
 
-int numAleatoire(const int min, const int max){
-   // Algorithme de génération d'un nombre aléatoire dans un intervalle donnée
-   // Source : https://cplusplus.com/reference/random/default_random_engine
-   std::random_device                  rand_dev;
-   std::default_random_engine          generator(rand_dev());
-   std::uniform_int_distribution<int>  distr(min, max);
-
-   int num = distr(generator);
-   return num;
-}
-
-
 bool deplacementPossible(const Terrain &terrain, const size_t cordX, const size_t cordY){
    // Si l'élément à la position à contrôler est un obstacle ou une limite, le déplacement est impossible
-   if(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L){
-      return false;
-   }
-
-   return true;
+   return !(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L);
 }
 
 
 bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY){
     // Définition et initialisation de cordonées temporaires
-    auto    tempCordX = cordX,
+    size_t  tempCordX = cordX,
             tempCordY = cordY;
 
     // Définition et initialisation de l'intervalle du nombre aléatoire
     const int MIN    = 1;
     const int MAX    = 4;
 
+    // Récupére un nombre aléatoire
     int random = numAleatoire(MIN,MAX);
 
     // Par rapport au nombre aléatoire il y aura une incrémentation ou décrémentation des
@@ -101,9 +88,9 @@ bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY){
 }
 
 
-void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool afficher){
+void tondre(Terrain terrain, Tondeuse &tondeuse, const int nombreDeplacement, bool afficher){
     // Définition et initialisation des cordonnées de départ de la tondeuse
-    auto    cordX = tondeuse.front(),
+    size_t  cordX = tondeuse.front(),
             cordY = tondeuse.back();
 
     // Boucle for pour itérer le nombre de déplacement
@@ -117,6 +104,7 @@ void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool aff
 
        // Test si le déplacement s'est correctement effectué
        if(deplacement(terrain, cordX, cordY)){
+          // Coupe l'herbe haute
           terrain[cordX][cordY] = Surface::h;
        }
     }
