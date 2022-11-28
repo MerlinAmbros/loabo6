@@ -40,7 +40,7 @@ void affichage(const Terrain &terrain){
 }
 
 
-bool deplacementPossible(const Terrain &terrain, const size_t cordX, const size_t cordY){
+bool deplacementPossible(const Terrain &terrain, const size_t &cordX, const size_t &cordY){
    // Si l'élément à la position à contrôler est un obstacle ou une limite, le déplacement est impossible
    return !(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L);
 }
@@ -95,7 +95,7 @@ void tondre(Terrain terrain, Tondeuse &tondeuse, const int nombreDeplacement, bo
 
     // Boucle for pour itérer le nombre de déplacement
     for(int i = 0; i < nombreDeplacement; ++i) {
-       // Efface l'écran avant de reafficher le terrain
+       // Efface l'écran avant d'afficher le terrain
        system("clear");
 
        if(afficher){

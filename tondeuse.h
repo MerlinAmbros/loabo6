@@ -53,14 +53,14 @@ void affichage(const Terrain &terrain);
  * @param   const vector<vector<Surface>>&
  *          vecteur contenant les éléments du terrain
  *
- *          const size_t cordX
+ *          const size_t& cordX
  *          cordonnée du point en X à contrôler
  *
- *          const size_t cordY
+ *          const size_t& cordY
  *          cordonnée du point en Y à contrôler
  * @return  retourne un bool de si l'opération est possible
  */
-bool deplacementPossible(const Terrain &terrain, size_t cordX, size_t cordY);
+bool deplacementPossible(const Terrain &terrain, const size_t &cordX, const size_t &cordY);
 
 
 /**

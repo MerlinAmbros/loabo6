@@ -1,7 +1,7 @@
 //---------------------------------------------------------
 // Fichier        : annexe.h
 // Auteur(s)      : Gerber Cedric Merlin & Vasques Dario
-// But            : Fichier contenant les outils utilisés
+// But            : Fichier permettant de calculer un nombre aléatoire dans un intervalle
 // Modifications  :
 // Remarque(s)    : -
 // Compilation :
