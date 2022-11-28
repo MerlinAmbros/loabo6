@@ -13,32 +13,23 @@
 
 #include "tondeuse.h"
 
-bool deplacementPossible(const Terrain &terrain, const size_t cordX, const size_t cordY){
-   // Si l'élément à la position à contrôler est un obstacle ou une limite, le déplacement est impossible
-    if(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L){
-        return false;
-    }
-
-    return true;
-}
-
-void affichage(Terrain &terrain){
+void affichage(const Terrain &terrain){
    // Boucle for pour itérer sur le terrain
-   for(size_t i = 0; i < terrain.size(); ++i){
+   for(auto & i : terrain){
       //boucle for pour itérer dans chaque ligne du terrain
-      for(size_t j = 0; j < terrain[i].size(); ++j){
-         switch(terrain[i][j]){
+      for(auto & j : i){
+         switch(j){
             case Surface::L:
-               std::cout << " " << SYMBOLE_LIMITE;
+               std::cout << ESPACE << SYMBOLE_LIMITE;
                break;
             case Surface::H:
-               std::cout << " " << SYMBOLE_HERBE_HAUTE;
+               std::cout << ESPACE << SYMBOLE_HERBE_HAUTE;
                break;
             case Surface::X:
-               std::cout << " " << SYMBOLE_OBSTACLE;
+               std::cout << ESPACE << SYMBOLE_OBSTACLE;
                break;
             case Surface::h:
-               std::cout << " " << SYMBOLE_HERBE_COUPE;
+               std::cout << ESPACE << SYMBOLE_HERBE_COUPE;
                break;
          }
       }
@@ -46,8 +37,9 @@ void affichage(Terrain &terrain){
    }
 }
 
+
 int numAleatoire(const int min, const int max){
-   // Algorithme de génération d'un nombre aléatoire dans une intervalle donnée
+   // Algorithme de génération d'un nombre aléatoire dans un intervalle donnée
    // Source : https://cplusplus.com/reference/random/default_random_engine
    std::random_device                  rand_dev;
    std::default_random_engine          generator(rand_dev());
@@ -57,19 +49,30 @@ int numAleatoire(const int min, const int max){
    return num;
 }
 
+
+bool deplacementPossible(const Terrain &terrain, const size_t cordX, const size_t cordY){
+   // Si l'élément à la position à contrôler est un obstacle ou une limite, le déplacement est impossible
+   if(terrain[cordX][cordY] == Surface::X or terrain[cordX][cordY] == Surface::L){
+      return false;
+   }
+
+   return true;
+}
+
+
 bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY){
     // Définition et initialisation de cordonées temporaires
-    size_t  tempCordX = cordX,
+    auto    tempCordX = cordX,
             tempCordY = cordY;
 
-    // Définition et initialisation de l'intervale du nombre aléatoire
+    // Définition et initialisation de l'intervalle du nombre aléatoire
     const int MIN    = 1;
     const int MAX    = 4;
 
     int random = numAleatoire(MIN,MAX);
 
-    // Par rapport au nombre aléatoire il y aura une incrémentation ou décrémentation de x ou y
-    // qui sont en réalités des cordonnées temporaires
+    // Par rapport au nombre aléatoire il y aura une incrémentation ou décrémentation des
+    // futures cordonnées x ou y
     switch (random) {
         case 1:
             tempCordX += 1;
@@ -97,14 +100,17 @@ bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY){
    return false;
 }
 
+
 void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool afficher){
     // Définition et initialisation des cordonnées de départ de la tondeuse
-    size_t  cordX = (size_t)tondeuse.front(),
-            cordY = (size_t)tondeuse.back();
+    auto    cordX = tondeuse.front(),
+            cordY = tondeuse.back();
 
     // Boucle for pour itérer le nombre de déplacement
     for(int i = 0; i < nombreDeplacement; ++i) {
+       // Efface l'écran avant de reafficher le terrain
        system("clear");
+
        if(afficher){
           affichage(terrain);
        }

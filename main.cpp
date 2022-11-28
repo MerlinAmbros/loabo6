@@ -12,7 +12,7 @@
 //                    Apple clang version 14.0.0 (Dario)
 //---------------------------------------------------------
 
-#include <cstdlib>
+#include <cstdlib>   //EXIT_SUCCESS
 #include <iostream>
 
 #include "annexe.h"

@@ -10,47 +10,47 @@
 //    - Compilateur : Mingw-w64 g++ 12.2.0 (Cedric)
 //                    Apple clang version 14.0.0 (Dario)
 //---------------------------------------------------------
-#ifndef UNTITLED5_TONDEUSE_H
-#define UNTITLED5_TONDEUSE_H
 
-#include "vector"
-#include  <cstdlib>
-#include <iostream>
-#include "random"
+#ifndef LABO_06_K_TONDEUSE_H
+#define LABO_06_K_TONDEUSE_H
 
-// Déclaration de l'enum des éléments du terrain
+#include "vector"       //utilisation des vecteurs
+#include <iostream>     //cout
+#include "random"       //utilisation des fonctions pour générer un nombre random
+
+// Déclaration de l'enum contenant les éléments du terrain
 enum Surface {L, X, H, h};
 
-// Définition d'using afin de simplifier le code
-using Data = Surface;
-using Ligne = std::vector<Data>;
-using Terrain = std::vector<Ligne>;
+// Types de données
+using Data     = Surface;
+using Ligne    = std::vector<Data>;
+using Terrain  = std::vector<Ligne>;
 
-using Tondeuse = std::vector<int>;
+using Tondeuse = std::vector<size_t>;
 
 // Déclaration et initialisation des variables qui seront affichées
 const char SYMBOLE_LIMITE        = 'L';
 const char SYMBOLE_OBSTACLE      = 'X';
 const char SYMBOLE_HERBE_HAUTE   = '~';
 const char SYMBOLE_HERBE_COUPE   = '.';
-
+const char ESPACE                = ' ';
 
 /**
  * @brief   Fonction pour afficher le terrain
  *
- * @param   vector<vector<Surface>>&
+ * @param   const vector<vector<Surface>>&
  *          vecteur contenant les éléments du terrain
  * @return  retourne rien
  */
-void affichage(Terrain &terrain);
+void affichage(const Terrain &terrain);
 
 /**
  * @brief   Fonction pour récupérer un nombre aléatoire entre un minimum et maximum
  *
- * @param   int min
+ * @param   const int min
  *          valeur minimum
  *
- *          int max
+ *          const int max
  *          valeur maximum
  * @return  retourne rien
  */
@@ -59,13 +59,13 @@ int numAleatoire(int min, int max);
 /**
  * @brief   Fonction pour contrôler que le déplacement de la tondeuse soit possible
  *
- * @param   vector<vector<Surface>>&
+ * @param   const vector<vector<Surface>>&
  *          vecteur contenant les éléments du terrain
  *
- *          size_t cordX
+ *          const size_t cordX
  *          cordonnée du point en X à contrôler
  *
- *          size_t cordY
+ *          const size_t cordY
  *          cordonnée du point en Y à contrôler
  * @return  retourne si l'opération est possible
  */
@@ -75,7 +75,7 @@ bool deplacementPossible(const Terrain &terrain, size_t cordX, size_t cordY);
 /**
  * @brief   Fonction pour calculer les nouvelles cordonnées si le déplacement est possible
  *
- * @param   vector<vector<Surface>>&
+ * @param   const vector<vector<Surface>>&
  *          vecteur contenant les éléments du terrain
  *
  *          size_t cordX
@@ -101,9 +101,9 @@ bool deplacement(const Terrain &terrain, size_t &cordX, size_t &cordY);
  *          nombre de déplacement de la tondeuse
  *
  *          bool afficher
- *          demande d'affichage des opérations
+ *          demande d'affichage du terrain
  * @return  retourne rien
  */
 void tondre(Terrain terrain, Tondeuse &tondeuse, int nombreDeplacement, bool afficher);
 
-#endif //UNTITLED5_TONDEUSE_H
+#endif //LABO_06_K_TONDEUSE_H
